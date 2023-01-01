@@ -26,15 +26,34 @@ async function sendMessage() {
 }
 </script>
 
-<div class="container messages col col-12">
-  {#each messages as message (message.id)}
-    <div class="msg"></div>
-    <p class="msg-text">{message.text}</p>
+<div class="container ">
+  <div class="row h-100 w-100 ">   {#each messages as message (message.id)}
+    <div class='msg-text col col-4 d-flex  my-1'>
+    <p class="  p-2 ">{message.text}</p>
+    </div>
   {/each}
 </div>
-<form on:submit|preventDefault="{sendMessage}">
-  <textarea placeholder="message" bind:value="{newMessage}" type="text"
+<div class="row">
+<form  class="container d-flex flex-column"on:submit|preventDefault="{sendMessage}">
+  <div class="col col-12 mb-3">
+  <textarea class="w-100 h-100"  placeholder="message" bind:value="{newMessage}" type="text"
   ></textarea>
-  <button class="btn btn-dark" type="submit">Send</button>
+</div>
+  <button class="btn btn-dark" type="submit">Save</button>
 
-</form>
+</form> 
+  </div>
+  </div>
+
+  <style>
+  .msg-text{
+    border:3px solid black;
+    border-radius:2rem;
+  }
+  .boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+  </style>
+
