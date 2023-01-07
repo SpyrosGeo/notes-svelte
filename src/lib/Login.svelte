@@ -26,7 +26,14 @@ function signOut() {
 </script>
 
 {#if $currentUser}
-  <button class=" bnt btn-warning m-5" on:click="{signOut}">Log out</button>
+  <div class="row">
+  <div class="col col-4">
+  <button class=" bnt btn-dark mb-3 " on:click="{signOut}">Log out</button>
+  </div>
+  <div class="col col-8">
+    <p class="col col-12"> Delete: <span style="color:red;">"alt+click"</span> </p>
+  </div>
+  </div>
 {:else}
   <form
     class="container d-flex flex-column justify-content-center"

@@ -18,6 +18,7 @@ console.log('messages',messages)
 });
 
 async function sendMessage() {
+if(!newMessage.length) return 
   const data = {
     text: newMessage,
     user: $currentUser.id,
@@ -65,9 +66,9 @@ return date.split(' ')[0]
 {/if}
   <div class="row message--list__container mb-2">
   <div class="  w-100 message-list__height ">   {#each messages as message (message.id)}
-    <div  on:click="{(e)=>handleClick(e,message.id)}" class='col col-12 msg-container  d-flex  my-1 '>
-    <p class=" msg-text col col-3">{message.text}</p>
-    <span class=" msg-date col col-9">{formatDate(message.created)}</span>
+    <div  on:click="{(e)=>handleClick(e,message.id)}" class='col col-12 msg-container  d-flex align-items-center my-1 '>
+    <p class=" msg-text col col-9">{message.text}</p>
+    <span class=" msg-date col col-auto">{formatDate(message.created)}</span>
     </div>
   {/each}
 </div>
