@@ -6,7 +6,9 @@ import Messages from "./lib/Messages.svelte";
 import { currentUser } from "./lib/pocketbase";
 
 
+let alertType:string
 let showAlert:boolean = false
+let alertMessage:string
 let proTips = [
 "Oi simeioseis kai oi gunaikes theloun xeri",
 "Oi gunaikes einai pio duskolo na simeiosoun giati to stilo den pianei kala sta plumena piata",
@@ -40,7 +42,7 @@ showAlert= false;
     </div>
     <Login />
     {#if $currentUser}
-      <Messages />
+      <Messages bind:showAlert bind:alertMessage />
     {/if}
   </div>
   
@@ -48,6 +50,6 @@ showAlert= false;
 {#if showAlert }
     
   <div class=" row alert alert-success d-flex"> 
-    <span class="col col-12 text-center">{proTip}</span>   
+    <span class="col col-12 text-center">{alertMessage}</span>   
   </div>
   {/if}

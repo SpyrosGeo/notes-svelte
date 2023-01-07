@@ -3,7 +3,8 @@
 import { onMount, onDestroy } from "svelte";
 import { currentUser, pb } from "./pocketbase";
 let newMessage: string;
-
+export let alertMessage:string =''
+export let showAlert:boolean = false;
 export let messages: any[] = [];
 onMount(async () => {
   const resultList = await pb.collection("messages").getList(1, 50, {
@@ -37,7 +38,19 @@ removeMessage(messageId)
 let text = e.target.innerHTML
 try{
  await navigator.clipboard.writeText(text)
+  alertMessage = `Copied to Clipboard`
+  showAlert=true;
+setTimeout(()=>{
+alertMessage=''
+showAlert=false;
+},1000)
 }catch{
+alertMessage = `Something went wrong`
+  showAlert=true;
+setTimeout(()=>{
+alertMessage=''
+showAlert=false;
+},1000)
 
 }
 }
