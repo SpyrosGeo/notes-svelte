@@ -26,7 +26,7 @@ function signOut() {
 </script>
 
 {#if $currentUser}
-  <button on:click="{signOut}">Log out</button>
+  <button class=" bnt btn-warning m-5" on:click="{signOut}">Log out</button>
 {:else}
   <form
     class="container d-flex flex-column justify-content-center"
