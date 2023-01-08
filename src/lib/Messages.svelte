@@ -4,6 +4,7 @@ import { onMount, onDestroy } from "svelte";
 import { currentUser, pb } from "./pocketbase";
 let newMessage: string;
 export let alertMessage:string =''
+export let isAlertWarning:boolean =false;
 export let showAlert:boolean = false;
 export let messages: any[] = [];
 onMount(async () => {
@@ -41,6 +42,7 @@ try{
  await navigator.clipboard.writeText(text)
   alertMessage = `Copied to Clipboard`
   showAlert=true;
+  isAlertWarning = false;
 setTimeout(()=>{
 alertMessage=''
 showAlert=false;
@@ -48,6 +50,7 @@ showAlert=false;
 }catch{
 alertMessage = `Something went wrong`
   showAlert=true;
+isAlertWarning = true;
 setTimeout(()=>{
 alertMessage=''
 showAlert=false;
@@ -56,19 +59,24 @@ showAlert=false;
 }
 }
 }
-function formatDate(date){
+
+function formatDate(date:string){
 return date.split(' ')[0]
 
 }
 </script>
 {#if !messages.length}
- <p>No messages</p> 
+ <p>No Notes</p> 
 {/if}
   <div class="row message--list__container mb-2">
-  <div class="  w-100 message-list__height ">   {#each messages as message (message.id)}
-    <div  on:click="{(e)=>handleClick(e,message.id)}" class='col col-12 msg-container  d-flex align-items-center my-1 '>
-    <p class=" msg-text col col-9">{message.text}</p>
-    <span class=" msg-date col col-auto">{formatDate(message.created)}</span>
+  <div class="  w-100  ">   {#each messages as message (message.id)}
+    <div   class='col col-12 msg-container  d-flex align-items-center my-2 '>
+      <div class="col col-10">
+        <p on:click="{(e)=>handleClick(e,message.id)}" on:keydown="{(e)=>handleClick(e,message.id)}" class=" msg-text ">{message.text}</p>
+      </div>
+      <div class=" col col-2">
+    <span class=" msg-date ">{formatDate(message.created)}</span>
+      </div> 
     </div>
   {/each}
 </div>
@@ -76,7 +84,7 @@ return date.split(' ')[0]
 <div class="row">
 <form  class="col col-12 d-flex flex-column"on:submit|preventDefault="{sendMessage}">
   <div class="col col-12 mb-3">
-  <textarea class="w-100 h-100"  placeholder="Add a note!" bind:value="{newMessage}" type="text"
+  <textarea class="w-100 h-100"  maxlength="35" placeholder="Add a note!" bind:value="{newMessage}" type="text"
   ></textarea>
 </div>
   <button class="btn btn-dark" type="submit">Save</button>
@@ -87,6 +95,7 @@ return date.split(' ')[0]
   <style>
   .message--list__container {
     height:30rem;
+    width:30rem;
     overflow-y: auto;
   }
   .message--list__height{
@@ -95,13 +104,13 @@ return date.split(' ')[0]
   }
   .msg-container{
     border-bottom: 2px solid black;
-    cursor: pointer;
   }
   .msg-text {
-    font-size:1.79rem;
+    cursor: pointer;
+    font-size:1.08rem;
   }
   .msg-date{
-    font-size:0.8rem;
+    font-size:0.6rem
   }
   .boxsizingBorder {
     -webkit-box-sizing: border-box;

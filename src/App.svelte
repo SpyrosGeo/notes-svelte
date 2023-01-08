@@ -6,7 +6,8 @@ import Messages from "./lib/Messages.svelte";
 import { currentUser } from "./lib/pocketbase";
 
 
-let alertType:string
+let isAlertWarning:boolean
+
 let showAlert:boolean = false
 let alertMessage:string
 let proTips = [
@@ -33,7 +34,7 @@ showAlert= false;
   <div>
     <div class="row d-flex align-items-center">
 
-    <img on:click="{showInfo}" on:keydown="{showInfo}" class="col col-2" src="logo.png" alt="">
+    <img  class="col col-2" src="logo.png" alt="">
     <h1 class=" col col-10">
       {$currentUser?.name
         ? "Hello " + $currentUser.name
@@ -49,7 +50,7 @@ showAlert= false;
 </div>
 {#if showAlert }
     
-  <div class=" row alert alert-success d-flex"> 
+  <div class="row alert  d-flex {isAlertWarning ? 'alert-danger': 'alert-success'}" > 
     <span class="col col-12 text-center">{alertMessage}</span>   
   </div>
   {/if}
