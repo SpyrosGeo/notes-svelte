@@ -7,24 +7,12 @@ import { currentUser } from "./lib/pocketbase";
 
 
 let isAlertWarning:boolean
-
+let loginError:string
 let showAlert:boolean = false
 let alertMessage:string
-let proTips = [
-"Oi simeioseis kai oi gunaikes theloun xeri",
-"Oi gunaikes einai pio duskolo na simeiosoun giati to stilo den pianei kala sta plumena piata",
-"Mia omorfi gunaika simeionei, mia asximi moutzouronei"
-]
-const getProTip = ()=>{
-return proTips[Math.floor(Math.random()*proTips.length)]
-}
-let proTip:string ;
-const showInfo= ()=>{
-showAlert = true
-proTip = getProTip()
-}
+
+
 onMount(async()=>{
-proTip = ''
 showAlert= false;
 })
 
@@ -41,7 +29,7 @@ showAlert= false;
         : "Login or Sign Up Dude..."}
     </h1>
     </div>
-    <Login />
+    <Login bind:loginError/>
     {#if $currentUser}
       <Messages bind:showAlert bind:alertMessage />
     {/if}
@@ -52,5 +40,11 @@ showAlert= false;
     
   <div class="row alert  d-flex {isAlertWarning ? 'alert-danger': 'alert-success'}" > 
     <span class="col col-12 text-center">{alertMessage}</span>   
+  </div>
+{/if}
+{#if loginError?.length }
+    
+  <div class="row alert  d-flex  alert-danger" > 
+    <span class="col col-12 text-center">{loginError}</span>   
   </div>
   {/if}

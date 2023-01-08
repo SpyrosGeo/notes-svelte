@@ -2,9 +2,15 @@
 import { currentUser, pb } from "./pocketbase";
 let username: string;
 let password: string;
-
+export let loginError:string;
 async function login() {
-  await pb.collection("users").authWithPassword(username, password);
+  try{
+  loginError = ''
+   await pb.collection("users").authWithPassword(username, password);
+  } catch(error){
+  console.log('error',error)
+    loginError = error.message 
+  }
 }
 async function signup() {
   try {
@@ -16,8 +22,8 @@ async function signup() {
     };
     const createdUser = await pb.collection("users").create(data);
     await login();
-  } catch (err) {
-    console.log("error", err);
+  } catch (error) {
+    loginError=error?.message
   }
 }
 function signOut() {

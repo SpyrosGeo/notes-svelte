@@ -1,6 +1,6 @@
 import pocketbase from "pocketbase";
 import { writable } from "svelte/store";
-export const pb = new pocketbase('http://192.168.8.35:8090/')
+export const pb = new pocketbase('https://notes-api.thatguy.gr/')
 
 
 export const currentUser = writable(pb.authStore.model)
