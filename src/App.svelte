@@ -18,8 +18,8 @@ showAlert= false;
 
 </script>
 
-<div class="h-100 d-flex justify-content-center align-items-center">
-  <div>
+<div class="container">
+  <div class="d-flex flex-column">
     <div class="row d-flex align-items-center">
 
     <img  class="col col-2" src="logo.png" alt="">
