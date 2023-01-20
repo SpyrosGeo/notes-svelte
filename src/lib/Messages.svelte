@@ -18,6 +18,10 @@
 .msg-date {
   font-size: 0.6rem;
 }
+  .msg-delete{
+    font-size:0.9rem;
+    padding:2px 10px;
+  }
 .boxsizingBorder {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -75,7 +79,7 @@ async function handleClick(e, messageId) {
       }, 1000);
     } catch {
       alertMessage = `Something went wrong`;
-      showAlert = true;
+showAlert = true;
       isAlertWarning = true;
       setTimeout(() => {
         alertMessage = "";
@@ -105,8 +109,9 @@ function formatDate(date: string) {
             {message.text}
           </p>
         </div>
-        <div class=" col col-2">
+        <div class=" col col-2 d-flex justify-content-around align-items-center">
           <span class=" msg-date ">{formatDate(message.created)}</span>
+          <button on:click={(()=>removeMessage(message.id))} class=" btn  btn-danger msg-delete">x</button>
         </div>
       </div>
     {/each}
