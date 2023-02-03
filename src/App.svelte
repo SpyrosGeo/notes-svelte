@@ -35,7 +35,6 @@ showAlert= false;
     {/if}
   </div>
   
-</div>
 {#if showAlert }
     
   <div class="row alert  d-flex {isAlertWarning ? 'alert-danger': 'alert-success'}" > 
@@ -48,3 +47,4 @@ showAlert= false;
     <span class="col col-12 text-center">{loginError}</span>   
   </div>
   {/if}
+</div>
