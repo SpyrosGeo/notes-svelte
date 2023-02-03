@@ -1,6 +1,6 @@
 <style>
 .message--list__container {
-  height: 30rem;
+  height: 25rem;
   width: 30rem;
   overflow-y: auto;
 }

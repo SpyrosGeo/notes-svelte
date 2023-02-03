@@ -19,7 +19,7 @@ showAlert= false;
 </script>
 
 <div class="container">
-  <div class="d-flex flex-column">
+  <div class="d-flex flex-column align-items-center">
     <div class="row d-flex align-items-center">
 
     <img  class="col col-2" src="logo.png" alt="">

@@ -33,10 +33,10 @@ function signOut() {
 
 {#if $currentUser}
   <div class="row">
-  <div class="col col-4">
+  <div class="col col-6">
   <button class=" bnt btn-dark mb-3 " on:click="{signOut}">Log out</button>
   </div>
-  <div class="col col-8">
+  <div class="col col-6">
     <p class="col col-12"> Delete: <span style="color:red;">"alt+click"</span> </p>
   </div>
   </div>
