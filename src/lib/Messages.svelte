@@ -117,7 +117,7 @@ function formatDate(date: string) {
     {/each}
   </div>
 </div>
-<div class="row">
+<div class="row w-100">
   <form
     class="col col-12 d-flex flex-column"
     on:submit|preventDefault="{sendMessage}">
