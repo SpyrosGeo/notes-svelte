@@ -13,6 +13,8 @@
 }
 .msg-text {
   cursor: pointer;
+  border:none;
+  background-color: transparent;
   font-size: 1.08rem;
 }
 .msg-date {
@@ -102,12 +104,12 @@ function formatDate(date: string) {
     {#each messages as message (message.id)}
       <div class="col col-12 msg-container  d-flex align-items-center my-2  ">
         <div class="col col-10">
-          <p
+          <button
             on:click="{(e) => handleClick(e, message.id)}"
             on:keydown="{(e) => handleClick(e, message.id)}"
             class=" msg-text ">
             {message.text}
-          </p>
+        </button>
         </div>
         <div class=" col col-2 d-flex justify-content-around align-items-center">
           <span class=" msg-date ">{formatDate(message.created)}</span>
